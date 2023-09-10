@@ -14,8 +14,10 @@
 </html>
 
 <?php
+//bu kisimda bu git reposunda yardim aldim https://github.com/dapphp/radius
 use Dapphp\Radius\Radius;
 
+//bu kisimda indirdigim git reposuna ait PATH verdim
 require_once '/var/www/html/radius/autoload.php';
 
 $username = $_POST["username"];
