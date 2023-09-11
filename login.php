@@ -14,21 +14,22 @@
 </html>
 
 <?php
+// burada indirdigim git reposunu kullandim
 use Dapphp\Radius\Radius;
 
+// bu kisimda indirdiğim git reposuna ait PATH verdim
 require_once '/var/www/html/radius/autoload.php';
 
 $username = $_POST["username"];
 $password = $_POST["password"];
 
-// URL'den gelen get parametrelerini al
+// URL'den gelen get parametrelerini alan degisken
 $logoutParam = $_GET["logoutUrl"];
 
-// Meraki'den gelen get parametresini kontrol et
+// Meraki'den gelen get parametresini kontrol etme blogu
 if (!empty($logoutParam)) {
     // Get parametresi mevcutsa, oturumu sonlandırma bağlantısını kullan
     echo "Meraki'den gelen get parametresi: $logoutParam";
-    // Burada yapılacak işlemi ekleyebilirsiniz, örneğin oturumu sonlandırma veya başka bir işlem.
 } else {
     $radiusServer = 'localhost';
     $radiusSecret = 'testing123';
@@ -44,7 +45,6 @@ if (!empty($logoutParam)) {
     if ($authenticated == true) {
         // Kullanıcı başarılı bir şekilde kimlik doğrulandı
         echo "Kullanici başarili bir şekilde kimlik doğruladi";
-        // Meraki'den gelen get parametresini handle etmek için burada ek işlemleri yapabilirsiniz.
     } else {
         // Kimlik doğrulama başarısız oldu
         echo sprintf(
