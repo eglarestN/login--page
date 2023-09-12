@@ -33,11 +33,11 @@ $query = "INSERT INTO radcheck (username,attribute, op, password, value) VALUES 
 
 $result = pg_query($conn, $query);
 
-if ($result) {
-    echo "Kayıt başarıyla tamamlandı.";
-} else {
-    echo "Kayıt işlemi başarısız: " . pg_last_error($conn);
-}
+    if ($result) {
+        echo "Kayıt başarıyla tamamlandı.";
+    } else {
+        echo "Kayıt işlemi başarısız: " . pg_last_error($conn);
+    }
 
 pg_close($conn);
 ?>
