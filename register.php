@@ -16,8 +16,8 @@
 <?php
 
 $servername = "localhost";
-$username = "root";
-$password = "2525";
+$username = "mysql_user";
+$password = "mysql_password";
 $dbname = "radius";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
