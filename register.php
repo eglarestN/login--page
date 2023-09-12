@@ -14,32 +14,30 @@
 </html>
 
 <?php
+$dbhost = 'localhost';
+$dbname = 'radius';
+$dbuser = 'postgres_user';
+$dbpass = 'postgres_password';
 
-$servername = "localhost";
-$username = "mysql_user";
-$password = "mysql_password";
-$dbname = "radius";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = pg_connect("host=$dbhost dbname=$dbname user=$dbuser password=$dbpass");
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (!$conn) {
+    die("Veritabanına bağlanırken hata oluştu.");
 }
 
+$username = $_POST['username'];
+$password = $_POST['password'];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
-    $username = $_POST["username"];
-    $password = $_POST["password"]; 
+$query = "INSERT INTO radcheck (username,attribute, op, password, value) VALUES ('$username', 'Cleartext-Password', ':=', '$password', '$password')";
 
-    $sql = "INSERT INTO radcheck (username, attribute, op, password, value) VALUES ('$username', 'Cleartext-Password', ':=', '$password', '$password')";
+$result = pg_query($conn, $query);
 
-    if ($conn->query($sql) === true) {
-        echo "Kullanici kaydedildi.";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+if ($result) {
+    echo "Kayıt başarıyla tamamlandı.";
+} else {
+    echo "Kayıt işlemi başarısız: " . pg_last_error($conn);
 }
 
-$conn->close();
-
+pg_close($conn);
 ?>
