@@ -14,6 +14,20 @@
 </html>
 
 <?php
+
+//merakiden gelen get parametrelerini ekrana yazdirma.
+$baseGrantUrl = $_GET["base_grant_url"];
+$userContinueUrl = $_GET["user_continue_url"];
+$gatewayId = $_GET["gateway_id"];
+$clientIp = $_GET["client_ip"];
+$clientMac = $_GET["client_mac"];
+
+echo "base_grant_url: " . urldecode($baseGrantUrl) . "<br>";
+echo "user_continue_url: " . urldecode($userContinueUrl) . "<br>";
+echo "gateway_id: " . $gatewayId . "<br>";
+echo "client_ip: " . $clientIp . "<br>";
+echo "client_mac: " . $clientMac . "<br>";
+
 // burada indirdigim git reposunu kullandim
 use Dapphp\Radius\Radius;
 
